@@ -20,9 +20,9 @@ const DashboardK = () => {
             <div key="payments-history">
                 <PaymentsHistory variant="compact"/>
             </div>
-            <div key="recent-tests">
+            {/* <div key="recent-tests">
                 <RecentQuestions />
-            </div>
+            </div> */}
         </Page>
     )
 }
