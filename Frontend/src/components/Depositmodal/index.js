@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import './Modal.css';
+import './Deposit.css';
 import Btn from '@ui/Btn';
 import { WellNexusAddress } from '@constants/address';
 import {abi} from '@constants/wellnexusabi';
 import { useWriteContract } from 'wagmi'
+import { parseEther } from 'viem'
+import { useAccount } from 'wagmi'
 
 
-const Modal = (props) => {
+const DepositModal = (props) => { 
+  const {address} = useAccount()
   const { writeContract } = useWriteContract()
-  const [name, setName] = useState('');
-  const [gender, setGender] = useState('');
-
+  const [amount, setamount] = useState('');
+  
  
 
   const handleSubmit = (e) => {
@@ -18,13 +20,12 @@ const Modal = (props) => {
     writeContract({ 
       abi,
       address: WellNexusAddress,
-      functionName: 'register_user',
+      functionName: 'deposit',
       args: [
-        name,
-        'imagurltest',
-        gender,
-        'dev'
+        address,
+        amount
       ],
+      value: parseEther('0.0000000000000000001'),
    })
     console.log('clicked')
   };
@@ -37,29 +38,20 @@ const Modal = (props) => {
           <div className="modal">
             <span className="close" onClick={props.close}>&times;</span>
             
-            <h2 className='headtext'>Enter Your Name</h2>
+            <h2 className='headtext'>Input Amount</h2>
             <div>
               
             </div>
             <form onSubmit={handleSubmit} className='formss'>
               <input
-                type="text"
-                placeholder="Input a username to start"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                type="number"
+                placeholder="input amount"
+                value={amount}
+                onChange={(e) => setamount(e.target.value)}
                 required
                 className='textbox'
               />
-              <input
-                type="text"
-                placeholder="Input your gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-                required
-                className='textbox'
-              />
-              {/* <button type="submit"> Submit</button> */}
-              <Btn text="Sign up" type="submit"/>
+              <Btn text="Deposit" type="submit"/>
             </form>
 
           </div>
@@ -69,4 +61,4 @@ const Modal = (props) => {
   );
 };
 
-export default Modal;
+export default DepositModal;

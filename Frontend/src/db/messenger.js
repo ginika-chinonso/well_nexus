@@ -1070,7 +1070,7 @@ export const patient = [
             {
                 id: 'zkPDq3',
                 sender: 'current',
-                message: 'Hello! Do you decode a cardiograms from the other clinic?',
+                message: 'Hello, can i book a session with you?',
                 date: moment().set({
                     'year': 2022,
                     'month': 10,

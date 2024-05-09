@@ -30,42 +30,62 @@ import {saveToLocalStorage} from '@store/features/layout';
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
-  getDefaultWallets,
+  // getDefaultWallets,
+  getDefaultConfig,
   RainbowKitProvider,
 } from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
+import { configureChains, createConfig, WagmiConfig, http, WagmiProvider} from 'wagmi';
+
 import {
   mainnet,
   polygon,
   optimism,
   arbitrum,
   base,
+  baseSepolia,
   zora,
 } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
+import {
+  QueryClientProvider,
+  QueryClient,
+} from "@tanstack/react-query";
+import { injected } from 'wagmi/connectors'
+
+// import { alchemyProvider } from 'wagmi/providers/alchemy';
+// import { publicProvider } from 'wagmi/providers/public';
 
 
 
 
-const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum, base, zora],
-  [
-    alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
-    publicProvider()
-  ]
-);
-const { connectors } = getDefaultWallets({
-  appName: 'My RainbowKit App',
-  projectId: 'YOUR_PROJECT_ID',
-  chains
-});
+// const { chains, publicClient } = configureChains(
+//   [mainnet, polygon, optimism, arbitrum, base, zora, baseSepolia],
+//   [
+//     alchemyProvider({ apiKey: process.env.ALCHEMY_ID }),
+//     publicProvider()
+//   ]
+// );
+
+
+
+// const config = getDefaultConfig({
+//   appName: 'My RainbowKit App',
+//   projectId: 'YOUR_PROJECT_ID',
+//   chains: [mainnet, baseSepolia],
+//   transports: {
+//     [baseSepolia.id]: http('https://base-sepolia.g.alchemy.com/v2/oDFA6iwybGc1efkLGghYfZh1PNn2B3pB'),
+//   },
+// });
+
 const wagmiConfig = createConfig({
+  chains: [mainnet, base, baseSepolia],
+  connectors: [injected()], 
+  transports: {
+    [baseSepolia.id]: http('https://base-sepolia.g.alchemy.com/v2/oDFA6iwybGc1efkLGghYfZh1PNn2B3pB'),
+  },
   autoConnect: true,
-  connectors,
-  publicClient
 })
 
+const queryClient = new QueryClient();
 
 const App = () => {
     const page = document.documentElement;
@@ -86,8 +106,9 @@ const App = () => {
     }, [direction]);
 
     return (
-      <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
+      <WagmiProvider config={wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <RainbowKitProvider >
 
         <CacheProvider value={cacheRtl}>
             <MuiThemeProvider theme={theme}>
@@ -111,7 +132,8 @@ const App = () => {
         </CacheProvider>
 
         </RainbowKitProvider>
-    </WagmiConfig>
+        </QueryClientProvider>
+    </WagmiProvider>
     );
 }
 

@@ -28,8 +28,8 @@ export const staff = [
         booked: 80,
         department: [
             {
-                id: 'family',
-                label: 'Family practice doctor'
+                id: 'therapy',
+                label: 'Therapists'
             }
         ],
         online: true,
@@ -46,10 +46,6 @@ export const staff = [
         rating: 2,
         booked: 20,
         department: [
-            {
-                id: 'family',
-                label: 'Family practice doctor'
-            },
             {
                 id: 'therapy',
                 label: 'Therapist'
@@ -69,8 +65,8 @@ export const staff = [
         booked: 71,
         department: [
             {
-                id: 'dent',
-                label: 'Dentist'
+                id: 'therapy',
+                label: 'Therapists'
             }
         ],
         online: true,
@@ -88,8 +84,8 @@ export const staff = [
         booked: 50,
         department: [
             {
-                id: 'dent',
-                label: 'Dentist'
+                id: 'therapy',
+                label: 'Therapists'
             }
         ]
     },
@@ -106,8 +102,8 @@ export const staff = [
         booked: 20,
         department: [
             {
-                id: 'dent',
-                label: 'Dentist'
+                id: 'therapy',
+                label: 'Therapists'
             }
         ],
         online: true,
@@ -125,8 +121,8 @@ export const staff = [
         booked: 38,
         department: [
             {
-                id: 'dent',
-                label: 'Dentist'
+                id: 'therapy',
+                label: 'Therapists'
             }
         ]
     },
@@ -143,12 +139,8 @@ export const staff = [
         booked: 55,
         department: [
             {
-                id: 'cardio',
-                label: 'Cardiologist'
-            },
-            {
-                id: 'family',
-                label: 'Family practice doctor'
+                id: 'therapy',
+                label: 'Therapists'
             },
         ]
     },

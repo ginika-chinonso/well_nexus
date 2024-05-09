@@ -63,7 +63,7 @@ const DoctorsList = ({variant}) => {
         const categoryMatch = category.value === 'all' || depsIDs.toLowerCase().includes(category.value.toLowerCase());
         const genderMatch = gender.value === 'all' || item.gender === gender.value
 
-        return queryMatch && categoryMatch && genderMatch;
+        return queryMatch  && genderMatch;
     })
 
     return (
@@ -73,7 +73,7 @@ const DoctorsList = ({variant}) => {
                     <CustomSelect options={depsOptions} variant="minimal" value={category} changeHandler={setCategory}/>
                     <GenderNav state={gender} handler={setGender}/>
                 </div>
-                <SearchBar placeholder="Search a doctor or medical department" handler={setSearch} value={search}/>
+                <SearchBar placeholder="Search a therapist" handler={setSearch} value={search}/>
             </ListHeader>
             <WidgetBody style={{padding: 0}}>
                 {
