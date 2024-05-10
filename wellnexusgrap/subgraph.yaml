@@ -1,0 +1,50 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: WellNexus
+    network: base-sepolia
+    source:
+      address: "0xc9EdFc8c08568D4eC14dcc77ab0c300a27D8903a"
+      abi: WellNexus
+      startBlock: 9747775
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AppointmentBooked
+        - DepositConfirmed
+        - DoctorRegistered
+        - PaymentConfirmed
+        - SessionCanceled
+        - UserRegistered
+        - WithdrawalSuccessful
+        - session_accepted
+        - session_marked_complete
+      abis:
+        - name: WellNexus
+          file: ./abis/WellNexus.json
+      eventHandlers:
+        - event: AppointmentBooked(address,address,uint256,uint256,uint256,uint8)
+          handler: handleAppointmentBooked
+        - event: DepositConfirmed(address,uint256,uint256)
+          handler: handleDepositConfirmed
+        - event: DoctorRegistered(address,uint256)
+          handler: handleDoctorRegistered
+        - event: PaymentConfirmed(address,address,uint256)
+          handler: handlePaymentConfirmed
+        - event: SessionCanceled(address,uint256)
+          handler: handleSessionCanceled
+        - event: UserRegistered(address,uint256)
+          handler: handleUserRegistered
+        - event: WithdrawalSuccessful(address,uint256)
+          handler: handleWithdrawalSuccessful
+        - event: session_accepted(uint256)
+          handler: handlesession_accepted
+        - event: session_marked_complete(uint256,address)
+          handler: handlesession_marked_complete
+      file: ./src/well-nexus.ts
