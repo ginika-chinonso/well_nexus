@@ -4,6 +4,8 @@ import Statistics from '@widgets/Statistics';
 import PaymentsHistory from '@widgets/PaymentsHistory';
 import RecentQuestions from '@widgets/RecentQuestions';
 import CreateModal from '@components/CreateModal';
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
 
 const DashboardK = () => {
     return (

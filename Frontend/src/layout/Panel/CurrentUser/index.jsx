@@ -38,7 +38,7 @@ const CurrentUser = () => {
                 <Avatar avatar={src} alt="avatar"/>
                 <div className="info">
                     <span className="h3">Akinbola Kehinde</span>
-                    <span className="position">Therapist</span>
+                    <span className="position">User</span>
                     <Menu className={open ? 'visible' : ''}>
                         <ConnectButton chainStatus="none"  />
                         <button onClick={toggleModal} >

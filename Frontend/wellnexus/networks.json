@@ -1,8 +1,0 @@
-{
-  "base-testnet": {
-    "wellnexus": {
-      "address": "0xc9EdFc8c08568D4eC14dcc77ab0c300a27D8903a",
-      "startBlock": 0
-    }
-  }
-}
