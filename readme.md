@@ -7,3 +7,4 @@ Join us in our mission to make quality mental healthcare accessible to all, rega
 - Deployed in base-sepolia
 - WellNexus contract address : 0xc9EdFc8c08568D4eC14dcc77ab0c300a27D8903a
 - Mock usdt contract address : 0x1C98CEbcf8a8FA7c782A76046553BA93d56236AC
+- Vercel deployment : well-nexus.vercel.app
